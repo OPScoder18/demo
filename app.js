@@ -51,6 +51,19 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/about', (req, res) => {
+  res.render('about');
+});
+
+app.get('/contact', (req, res) => {
+  res.render('contact');
+});
+
+app.get('/fixalltradelink', (req, res) => {
+  res.render('fixalltradelink');
+});
+
+
 // Notice form
 app.get('/notice', (req, res) => {
   res.render('notice');

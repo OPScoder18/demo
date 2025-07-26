@@ -34,7 +34,8 @@
         </td>
         <td>
           <% if (reg.paymentSS) { %>
-            <img src="/uploads/<%= reg.paymentSS %>" width="100" />
+           <img src="/uploads/<%= registration.paymentScreenshot %>" alt="Payment Screenshot" />
+
           <% } else { %>
             No Screenshot
           <% } %>
