@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free Fire Tournament Registration</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .player-block { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <h2>FixAll</h2>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/notice">Notice</a></li>
+        <li><a href="/fixalltradelink">FixAllTradelink</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Registration Form -->
+  <main class="content">
+    <h1>Free Fire Tournament Registration</h1>
+    <form action="/notice/register" method="POST" enctype="multipart/form-data">
+      <input name="groupName" placeholder="Group Name" required />
+      <input name="leaderName" placeholder="Leader Full Name" required />
+      <input name="leaderPhone" placeholder="Leader Phone No." required />
+      <input name="schoolName" placeholder="School Name" required />
+      <input name="email" type="email" placeholder="Email Address" required />
+
+      <label>Select Number of Players:</label>
+      <select id="playerCount" onchange="togglePlayers()" required>
+        <option value="4">4 Players</option>
+        <option value="5">5 Players</option>
+      </select>
+
+      <h3>Players</h3>
+      <div class="player-block">
+        <input name="ign1" placeholder="Player 1 IGN" required />
+        <input name="uid1" placeholder="Player 1 UID" required />
+      </div>
+      <div class="player-block">
+        <input name="ign2" placeholder="Player 2 IGN" required />
+        <input name="uid2" placeholder="Player 2 UID" required />
+      </div>
+      <div class="player-block">
+        <input name="ign3" placeholder="Player 3 IGN" required />
+        <input name="uid3" placeholder="Player 3 UID" required />
+      </div>
+      <div class="player-block">
+        <input name="ign4" placeholder="Player 4 IGN" required />
+        <input name="uid4" placeholder="Player 4 UID" required />
+      </div>
+      <div class="player-block" id="player5Block" style="display: none;">
+        <input name="ign5" placeholder="Player 5 IGN" />
+        <input name="uid5" placeholder="Player 5 UID" />
+      </div>
+
+      <label>Upload Payment Screenshot (QR shown below)</label><br>
+      <img src="/qr-code.png" alt="QR Code" style="max-width: 200px;" /><br>
+      <input type="file" name="paymentSS" accept="image/*" required />
+
+      <label><input type="checkbox" name="agreed" required /> I agree to the rules and conditions</label>
+      <button type="submit">Submit Registration</button>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 FixAll. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function togglePlayers() {
+      const count = document.getElementById('playerCount').value;
+      const player5Block = document.getElementById('player5Block');
+      if (count === '5') {
+        player5Block.style.display = 'block';
+        player5Block.querySelectorAll('input').forEach(input => input.required = true);
+      } else {
+        player5Block.style.display = 'none';
+        player5Block.querySelectorAll('input').forEach(input => input.required = false);
+      }
+    }
+  </script>
+
+</body>
+</html>

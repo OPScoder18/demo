@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Login - FixAll</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <h2>FixAll</h2>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/admin/login">Admin Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Login Form -->
+  <main class="content">
+    <h1>Admin Login</h1>
+    <% if (error) { %>
+      <p style="color: red;"><%= error %></p>
+    <% } %>
+    <form method="POST" action="/admin/login">
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 FixAll. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

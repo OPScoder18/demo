@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <h1>Admin Dashboard</h1>
+  <p>Total Registrations: <%= total %></p>
+
+  <table border="1">
+    <tr>
+      <th>Group Name</th>
+      <th>Leader</th>
+      <th>School</th>
+      <th>Email</th>
+      <th>Players</th>
+      <th>Payment Screenshot</th>
+    </tr>
+    <% data.forEach(reg => { %>
+      <tr>
+        <td><%= reg.groupName %></td>
+        <td><%= reg.leaderName %> (<%= reg.leaderPhone %>)</td>
+        <td><%= reg.schoolName %></td>
+        <td><%= reg.email %></td>
+        <td>
+          <%= reg.ign1 %> (<%= reg.uid1 %>)<br>
+          <%= reg.ign2 %> (<%= reg.uid2 %>)<br>
+          <%= reg.ign3 %> (<%= reg.uid3 %>)<br>
+          <%= reg.ign4 %> (<%= reg.uid4 %>)<br>
+          <% if (reg.ign5) { %>
+            <%= reg.ign5 %> (<%= reg.uid5 %>)
+          <% } %>
+        </td>
+        <td>
+          <% if (reg.paymentSS) { %>
+            <img src="/uploads/<%= reg.paymentSS %>" width="100" />
+          <% } else { %>
+            No Screenshot
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+
+  <p><a href="/admin/logout">Logout</a></p>
+</body>
+</html>

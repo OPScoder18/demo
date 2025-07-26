@@ -1,0 +1,152 @@
+/* Reset and base */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f7f7f7;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+  background: #004d99;
+  padding: 1rem 0;
+  color: #fff;
+}
+
+.navbar h2 {
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.nav-links {
+  list-style: none;
+  float: right;
+  margin-right: 1rem;
+}
+
+.nav-links li {
+  display: inline;
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: #ffcc00;
+}
+
+/* Hero */
+.hero {
+  background: #0066cc;
+  color: white;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  background: #ffcc00;
+  color: #004d99;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background: #e6b800;
+}
+
+/* Content */
+.content {
+  background: white;
+  padding: 2rem 1rem;
+  margin: 2rem auto;
+  border-radius: 8px;
+  max-width: 900px;
+}
+
+.content h1 {
+  margin-bottom: 1rem;
+}
+
+/* Forms */
+form input, form textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background: #004d99;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form button:hover {
+  background: #003366;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+table th {
+  background: #004d99;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    float: none;
+    text-align: center;
+    margin: 1rem 0;
+  }
+  .nav-links li {
+    display: block;
+    margin: 0.5rem 0;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
