@@ -1,48 +1,258 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - FixAll</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2ecc71;
+      --dark-color: #2c3e50;
+      --light-color: #ecf0f1;
+      --accent-color: #e74c3c;
+      --text-color: #333;
+      --text-light: #fff;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body, html {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-color);
+      background-color: #f5f7fa;
+      overflow-x: hidden;
+    }
+    
+    /* Admin Header */
+    .admin-header {
+      background-color: var(--dark-color);
+      color: var(--text-light);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+    
+    .admin-header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .logout-btn {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .logout-btn:hover {
+      background-color: #c0392b;
+      transform: translateY(-2px);
+    }
+    
+    /* Dashboard Content */
+    .dashboard-container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    
+    .stats-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .stats-card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark-color);
+    }
+    
+    .stats-card p {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    
+    /* Data Table */
+    .data-table-container {
+      background-color: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+    }
+    
+    table.dataTable {
+      width: 100% !important;
+      border-collapse: collapse;
+    }
+    
+    table.dataTable thead th {
+      background-color: var(--dark-color);
+      color: white;
+      padding: 1rem;
+      text-align: left;
+    }
+    
+    table.dataTable tbody td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    
+    table.dataTable tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    
+    table.dataTable tbody tr:hover {
+      background-color: rgba(52, 152, 219, 0.1);
+    }
+    
+    .player-info {
+      line-height: 1.6;
+    }
+    
+    .payment-img {
+      max-width: 100px;
+      max-height: 100px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      transition: var(--transition);
+    }
+    
+    .payment-img:hover {
+      transform: scale(1.5);
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      z-index: 10;
+      position: relative;
+    }
+    
+    .no-screenshot {
+      color: #999;
+      font-style: italic;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .dashboard-container {
+        padding: 0 1rem;
+      }
+      
+      .admin-header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .stats-card p {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Admin Dashboard</h1>
-  <p>Total Registrations: <%= total %></p>
 
-  <table border="1">
-    <tr>
-      <th>Group Name</th>
-      <th>Leader</th>
-      <th>School</th>
-      <th>Email</th>
-      <th>Players</th>
-      <th>Payment Screenshot</th>
-    </tr>
-    <% data.forEach(reg => { %>
-      <tr>
-        <td><%= reg.groupName %></td>
-        <td><%= reg.leaderName %> (<%= reg.leaderPhone %>)</td>
-        <td><%= reg.schoolName %></td>
-        <td><%= reg.email %></td>
-        <td>
-          <%= reg.ign1 %> (<%= reg.uid1 %>)<br>
-          <%= reg.ign2 %> (<%= reg.uid2 %>)<br>
-          <%= reg.ign3 %> (<%= reg.uid3 %>)<br>
-          <%= reg.ign4 %> (<%= reg.uid4 %>)<br>
-          <% if (reg.ign5) { %>
-            <%= reg.ign5 %> (<%= reg.uid5 %>)
-          <% } %>
-        </td>
-        <td>
-          <% if (reg.paymentSS) { %>
-            <img src="/uploads/<%= reg.paymentSS %>" width="100" />
-          <% } else { %>
-            No Screenshot
-          <% } %>
-        </td>
-      </tr>
-    <% }) %>
-  </table>
+  <!-- Admin Header -->
+  <header class="admin-header">
+    <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
+    <a href="/admin/logout" class="logout-btn">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+  </header>
 
-  <p><a href="/admin/logout">Logout</a></p>
+  <!-- Dashboard Content -->
+  <div class="dashboard-container">
+    <div class="stats-card">
+      <h2>Total Registrations</h2>
+      <p><%= total %></p>
+    </div>
+    
+    <div class="data-table-container">
+      <table id="registrationsTable" class="display">
+        <thead>
+          <tr>
+            <th>Group Name</th>
+            <th>Leader</th>
+            <th>School</th>
+            <th>Email</th>
+            <th>Players</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach(reg => { %>
+            <tr>
+              <td><%= reg.groupName %></td>
+              <td>
+                <strong><%= reg.leaderName %></strong><br>
+                <%= reg.leaderPhone %>
+              </td>
+              <td><%= reg.schoolName %></td>
+              <td><%= reg.email %></td>
+              <td class="player-info">
+                <div><i class="fas fa-user"></i> <%= reg.ign1 %> (<%= reg.uid1 %>)</div>
+                <div><i class="fas fa-user"></i> <%= reg.ign2 %> (<%= reg.uid2 %>)</div>
+                <div><i class="fas fa-user"></i> <%= reg.ign3 %> (<%= reg.uid3 %>)</div>
+                <div><i class="fas fa-user"></i> <%= reg.ign4 %> (<%= reg.uid4 %>)</div>
+                <% if (reg.ign5) { %>
+                  <div><i class="fas fa-user"></i> <%= reg.ign5 %> (<%= reg.uid5 %>)</div>
+                <% } %>
+              </td>
+              <td>
+                <% if (reg.paymentSS) { %>
+                  <img src="/uploads/<%= reg.paymentSS %>" class="payment-img" alt="Payment Screenshot" />
+                <% } else { %>
+                  <span class="no-screenshot">No Screenshot</span>
+                <% } %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#registrationsTable').DataTable({
+        responsive: true,
+        pageLength: 25,
+        order: [[0, 'asc']],
+        dom: '<"top"f>rt<"bottom"lip><"clear">',
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search registrations...",
+        }
+      });
+    });
+  </script>
 </body>
 </html>

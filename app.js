@@ -92,6 +92,8 @@ app.get('/admin/dashboard', async (req, res) => {
   res.render('admin-dashboard', { total: data.length, data });
 });
 
+
+
 // Admin logout
 app.get('/admin/logout', (req, res) => {
   req.session.destroy();
@@ -116,7 +118,7 @@ app.post('/notice/register', upload.single('paymentSS'), async (req, res) => {
     });
 
     await newRegistration.save();
-    res.send('✅ Registration successful! <a href="/">Go Home</a>');
+    res.render('success');
   } catch (err) {
     console.error('❌ Error saving registration:', err);
     res.status(500).send('❌ Error while saving registration.');

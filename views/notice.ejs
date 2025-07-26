@@ -2,11 +2,275 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Free Fire Tournament Registration</title>
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    .player-block { margin-bottom: 10px; }
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2ecc71;
+      --dark-color: #2c3e50;
+      --light-color: #ecf0f1;
+      --accent-color: #e74c3c;
+      --text-color: #333;
+      --text-light: #fff;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body, html {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-color);
+      background-color: #f5f7fa;
+      overflow-x: hidden;
+    }
+    
+    /* Navbar */
+    .navbar {
+      background-color: var(--dark-color);
+      padding: 1rem 2rem;
+      color: var(--text-light);
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .navbar h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: var(--transition);
+    }
+    
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--secondary-color);
+      transition: var(--transition);
+    }
+    
+    .nav-links li a:hover {
+      color: var(--secondary-color);
+    }
+    
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+    
+    /* Main Content */
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: var(--text-light);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+    
+    .content h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--dark-color);
+      font-size: 2.2rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    .content h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    
+    input, select, button {
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    }
+    
+    .player-block {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background-color: rgba(52, 152, 219, 0.05);
+      border-radius: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .player-block input {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    label {
+      font-weight: 500;
+      margin-bottom: -0.5rem;
+    }
+    
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1em;
+    }
+    
+    /* QR Code Section */
+    .qr-section {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    
+    .qr-section img {
+      max-width: 200px;
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      background-color: white;
+      border-radius: 5px;
+      margin-top: 0.5rem;
+      box-shadow: var(--shadow);
+    }
+    
+    /* Checkbox */
+    input[type="checkbox"] {
+      width: auto;
+      margin-right: 0.5rem;
+      transform: scale(1.2);
+    }
+    
+    /* Submit Button */
+    button[type="submit"] {
+      background-color: var(--secondary-color);
+      color: white;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      padding: 1rem;
+      margin-top: 1rem;
+      transition: var(--transition);
+    }
+    
+    button[type="submit"]:hover {
+      background-color: #27ae60;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(46, 204, 113, 0.3);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: var(--text-light);
+      text-align: center;
+      padding: 1.5rem 0;
+      margin-top: 2rem;
+    }
+    
+    footer p {
+      margin: 0;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar .container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .content {
+        padding: 1.5rem;
+        margin: 1.5rem;
+      }
+      
+      .content h1 {
+        font-size: 1.8rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 1rem;
+      }
+      
+      .content {
+        padding: 1rem;
+        margin: 1rem;
+      }
+      
+      .player-block {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      
+      .player-block input {
+        min-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -63,9 +327,11 @@
         <input name="uid5" placeholder="Player 5 UID" />
       </div>
 
-      <label>Upload Payment Screenshot (QR shown below)</label><br>
-      <img src="/qr-code.png" alt="QR Code" style="max-width: 200px;" /><br>
-      <input type="file" name="paymentSS" accept="image/*" required />
+      <div class="qr-section">
+        <label>Upload Payment Screenshot (QR shown below)</label>
+        <img src="/qr-code.png" alt="QR Code" />
+        <input type="file" name="paymentSS" accept="image/*" required style="margin-top: 1rem; width: 100%;" />
+      </div>
 
       <label><input type="checkbox" name="agreed" required /> I agree to the rules and conditions</label>
       <button type="submit">Submit Registration</button>
@@ -84,7 +350,7 @@
       const count = document.getElementById('playerCount').value;
       const player5Block = document.getElementById('player5Block');
       if (count === '5') {
-        player5Block.style.display = 'block';
+        player5Block.style.display = 'flex';
         player5Block.querySelectorAll('input').forEach(input => input.required = true);
       } else {
         player5Block.style.display = 'none';

@@ -2,19 +2,267 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Registration Successful</title>
-  <link rel="stylesheet" href="/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registration Successful - FixAll</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2ecc71;
+      --dark-color: #2c3e50;
+      --light-color: #ecf0f1;
+      --accent-color: #e74c3c;
+      --text-color: #333;
+      --text-light: #fff;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body, html {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-color);
+      background-color: #f5f7fa;
+      overflow-x: hidden;
+    }
+    
+    /* Navbar */
+    .navbar {
+      background-color: var(--dark-color);
+      padding: 1rem 2rem;
+      color: var(--text-light);
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .navbar h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: var(--transition);
+    }
+    
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--secondary-color);
+      transition: var(--transition);
+    }
+    
+    .nav-links li a:hover {
+      color: var(--secondary-color);
+    }
+    
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    /* Success Content */
+    .content {
+      max-width: 600px;
+      margin: 5rem auto;
+      padding: 3rem;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    
+    .content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--secondary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      color: var(--text-color);
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+      border: 2px solid transparent;
+    }
+    
+    .btn:hover {
+      background-color: transparent;
+      color: var(--secondary-color);
+      border-color: var(--secondary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(46, 204, 113, 0.6);
+    }
+    
+    /* Confirmation Animation */
+    .checkmark {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: rgba(46, 204, 113, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      animation: pulse 2s infinite;
+    }
+    
+    .checkmark i {
+      font-size: 3rem;
+      color: var(--secondary-color);
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: var(--text-light);
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+    
+    footer p {
+      margin: 0;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar .container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .content {
+        margin: 3rem 1.5rem;
+        padding: 2rem;
+      }
+      
+      .content h1 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 1rem;
+      }
+      
+      .content {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+      }
+      
+      .content h1 {
+        font-size: 1.8rem;
+      }
+      
+      .content p {
+        font-size: 1rem;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <% include partials/navbar %>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <h2>FixAll</h2>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/notice">Notice</a></li>
+        <li><a href="/fixalltradelink">FixAllTradelink</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
+  <!-- Main Content -->
   <main class="content">
-    <h1>✅ Successfully Registered!</h1>
-    <p>Your team has been registered for the Free Fire tournament. We'll be in touch shortly.</p>
+    <div class="checkmark">
+      <i class="fas fa-check"></i>
+    </div>
+    <h1>Registration Successful!</h1>
+    <p>We have received your registration details for the Free Fire tournament. Our team will review your submission and contact you shortly with further instructions.</p>
+    <p>Please keep an eye on your email and phone call for updates.</p>
     <a href="/" class="btn">Back to Home</a>
   </main>
 
-  <% include partials/footer %>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 FixAll. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>

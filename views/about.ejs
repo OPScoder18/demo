@@ -2,9 +2,284 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us - FixAll</title>
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2ecc71;
+      --dark-color: #2c3e50;
+      --light-color: #ecf0f1;
+      --accent-color: #e74c3c;
+      --text-color: #333;
+      --text-light: #fff;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body, html {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-color);
+      background-color: #f5f7fa;
+      overflow-x: hidden;
+    }
+    
+    /* Navbar */
+    .navbar {
+      background-color: var(--dark-color);
+      padding: 1rem 2rem;
+      color: var(--text-light);
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .navbar h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: var(--transition);
+    }
+    
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--secondary-color);
+      transition: var(--transition);
+    }
+    
+    .nav-links li a:hover {
+      color: var(--secondary-color);
+    }
+    
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+    
+    /* Main Content */
+    .content {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .content h1 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      color: var(--dark-color);
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .content h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      border-radius: 2px;
+    }
+    
+    .content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 800px;
+      margin-bottom: 2rem;
+      color: var(--text-color);
+    }
+    
+    /* Mission Section */
+    .mission-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    
+    .mission-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      width: 350px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .mission-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .mission-card i {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .mission-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark-color);
+    }
+    
+    .mission-card p {
+      font-size: 1rem;
+      color: #666;
+    }
+    
+    /* Team Section */
+    .team-section {
+      margin: 4rem 0;
+      width: 100%;
+    }
+    
+    .team-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      color: var(--dark-color);
+    }
+    
+    .team-members {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    
+    .team-member {
+      background-color: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      width: 250px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+    
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1rem;
+      display: block;
+      border: 3px solid var(--primary-color);
+    }
+    
+    .team-member h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark-color);
+    }
+    
+    .team-member p {
+      font-size: 0.9rem;
+      color: #666;
+      font-style: italic;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: var(--text-light);
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+    
+    footer p {
+      margin: 0;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar .container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .content {
+        padding: 1.5rem;
+        margin: 1.5rem;
+      }
+      
+      .content h1 {
+        font-size: 2.2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 1rem;
+      }
+      
+      .content {
+        padding: 1rem;
+        margin: 1rem;
+      }
+      
+      .mission-card {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -25,7 +300,50 @@
   <!-- Main Content -->
   <main class="content">
     <h1>About Us</h1>
-    <p>FixAll is committed to delivering top-notch tech services and organizing esports tournaments for youth engagement.</p>
+    <p>FixAll is committed to delivering top-notch tech services and organizing esports tournaments for youth engagement. We bridge the gap between technology and entertainment, creating opportunities for young talents to showcase their skills.</p>
+    
+    <div class="mission-section">
+      <div class="mission-card">
+        <i class="fas fa-laptop-code"></i>
+        <h3>Tech Services</h3>
+        <p>We provide cutting-edge technology solutions tailored to meet modern digital needs with efficiency and innovation.</p>
+      </div>
+      
+      <div class="mission-card">
+        <i class="fas fa-gamepad"></i>
+        <h3>Esports Tournaments</h3>
+        <p>Organizing competitive gaming events that bring together communities and foster sportsmanship among youth.</p>
+      </div>
+      
+      <div class="mission-card">
+        <i class="fas fa-users"></i>
+        <h3>Community Building</h3>
+        <p>Creating platforms for like-minded individuals to connect, collaborate, and grow together in the digital space.</p>
+      </div>
+    </div>
+    
+    <div class="team-section">
+      <h2>Our Team</h2>
+      <div class="team-members">
+        <div class="team-member">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team Member">
+          <h3>Alex Johnson</h3>
+          <p>CEO & Founder</p>
+        </div>
+        
+        <div class="team-member">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Team Member">
+          <h3>Sarah Williams</h3>
+          <p>Tech Director</p>
+        </div>
+        
+        <div class="team-member">
+          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Team Member">
+          <h3>Michael Chen</h3>
+          <p>Esports Coordinator</p>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- Footer -->
